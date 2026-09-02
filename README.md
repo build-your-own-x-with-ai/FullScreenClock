@@ -22,6 +22,7 @@
 ## 功能特性
 
 - ⏰ **精确时间显示** - HH:mm:ss.SSS 格式（小时:分钟:秒.毫秒）
+- 🔢 **等宽字体** - 使用 Courier New 等宽字体和 tabular figures，时间显示稳定不跳动
 - 📅 **日期显示** - 可选显示/隐藏，支持中文星期
 - 🎨 **自定义颜色** - 背景、时间、日期颜色独立设置
 - 📏 **字体大小调节** - 时间和日期字体大小独立控制
@@ -89,6 +90,17 @@ chmod +x build_release.sh
 ```
 
 ### 手动构建
+
+#### 生成应用图标（所有平台）
+```bash
+# 使用脚本自动生成
+./generate_icons.sh      # macOS/Linux
+generate_icons.bat       # Windows
+
+# 或手动运行
+flutter pub get
+dart run flutter_launcher_icons
+```
 
 #### Windows
 ```powershell
@@ -169,7 +181,8 @@ flutter run -d android
 | 开发运行 | `run_dev.bat` | `run_dev.sh` | 快速启动开发模式 |
 | 单平台构建 | `build_release.bat` | `build_release.sh` | 构建当前平台 Release 版本 |
 | 多平台构建 | `build_multi.bat` | `build_multi.sh` | 交互式菜单选择构建目标 |
-| 图标生成 | `generate_icon.py` | `generate_icon.py` | Python 脚本生成应用图标 |
+| 图标生成 | `generate_icons.bat` | `generate_icons.sh` | 生成所有平台应用图标 |
+| 原始图标生成 | `generate_icon.py` | `generate_icon.py` | Python 脚本生成应用图标源文件 |
 
 ## 依赖项
 

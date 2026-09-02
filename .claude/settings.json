@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git branch *)",
+      "Bash(git push *)",
+      "Bash(ls -la ~/.ssh/)",
+      "Read(//c/Users/georg/.ssh/**)",
+      "Bash(dart run *)",
+      "Bash(where flutter *)",
+      "Read(//c//**)",
+      "Read(//d//**)",
+      "Read(//c/Users/georg/**)",
+      "Read(//c/Program Files/**)"
+    ]
+  }
+}
