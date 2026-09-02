@@ -1,11 +1,9 @@
 import 'dart:async';
-import 'dart:io';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
-import 'package:window_manager/window_manager.dart';
+import 'window_helper.dart';
 import 'config.dart';
 import 'settings_screen.dart';
 
@@ -52,16 +50,12 @@ class _ClockScreenState extends State<ClockScreen> {
 
   void _applyFullscreenMode() async {
     if (_config.isFullscreen) {
-      // 桌面平台使用 window_manager
-      if (!kIsWeb && (Platform.isWindows || Platform.isLinux || Platform.isMacOS)) {
-        await windowManager.setFullScreen(true);
-      }
-      // 移动平台使用 SystemChrome
+      // 使用WindowHelper处理桌面平台的全屏
+      await WindowHelper.setFullScreen(true);
+      // 移动平台和Web使用 SystemChrome
       SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
     } else {
-      if (!kIsWeb && (Platform.isWindows || Platform.isLinux || Platform.isMacOS)) {
-        await windowManager.setFullScreen(false);
-      }
+      await WindowHelper.setFullScreen(false);
       SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
     }
   }
