@@ -1,4 +1,6 @@
 import 'dart:async';
+import 'dart:io';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
@@ -50,10 +52,16 @@ class _ClockScreenState extends State<ClockScreen> {
 
   void _applyFullscreenMode() async {
     if (_config.isFullscreen) {
-      await windowManager.setFullScreen(true);
+      // 桌面平台使用 window_manager
+      if (!kIsWeb && (Platform.isWindows || Platform.isLinux || Platform.isMacOS)) {
+        await windowManager.setFullScreen(true);
+      }
+      // 移动平台使用 SystemChrome
       SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
     } else {
-      await windowManager.setFullScreen(false);
+      if (!kIsWeb && (Platform.isWindows || Platform.isLinux || Platform.isMacOS)) {
+        await windowManager.setFullScreen(false);
+      }
       SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
     }
   }
